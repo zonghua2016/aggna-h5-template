@@ -1,0 +1,97 @@
+<!--
+ * @Author       : tongzonghua
+ * @Date         : 2021-02-03 11:43:38
+ * @LastEditors  : tongzonghua
+ * @LastEditTime : 2021-03-30 15:58:19
+ * @Email        : tongzonghua@360.cn
+ * @Description  : 
+ * @FilePath     : /cli/aggna-h5-template/public/index.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+  <meta name="full-screen" content="yes">
+  <!-- 解决资讯详情页图片来源问题 -->
+  <meta name="referrer" content="never">
+  <!--开启对webapp的支持设置Web应用是否以全屏模式运行-->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <!-- <meta name="full-screen" content="yes"> -->
+  <link rel="icon" href="http://p0.qhimg.com/t01401305de3f392198.png">
+  <title><%= htmlWebpackPlugin.options.title %></title>
+</head>
+
+<body>
+  <noscript>
+    <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled.
+      Please enable it to continue.</strong>
+  </noscript>
+  <div id="app"></div>
+  <!-- built files will be auto injected -->
+  <!-- <link rel="stylesheet" href="https://g.alicdn.com/de/prismplayer/2.9.1/skins/default/aliplayer-min.css" />
+  <script type="text/javascript" charset="utf-8"
+    src="https://g.alicdn.com/de/prismplayer/2.9.1/aliplayer-min.js"></script> -->
+  <!-- <script src="https://bmw0.t4m.cn/applink.js"></script> -->
+  <!-- <script id="wg_bi_js" src="https://bi.wg.360.cn/bi.min.js?web_wot_camp"></script> -->
+  <!-- 微信分享js -->
+  <!-- <script src="https://s5.ssl.qhres.com/static/1055d31ed830a381.js"></script> -->
+  <!-- jquery -->
+  <!-- <script src="https://s5.ssl.qhres.com/static/93531334154164a6.js"></script> -->
+  <!-- 图片放大功能 fly-zomm-img.min.js -->
+  <!-- <script src="https://s1.ssl.qhres.com/static/684dfca7373d7fe4.js"></script> -->
+  
+  <script>
+    (function (win, doc) {
+      if (!win.addEventListener) return;
+      var html = document.documentElement;
+      win.addEventListener("resize", fnResize, false);
+      fnResize();
+      function fnResize() {
+        var deviceWidth = document.documentElement.clientWidth || window.innerWidth;
+        if (deviceWidth >= 750) {
+          deviceWidth = 750;
+        }
+        if (deviceWidth <= 320) {
+          deviceWidth = 320;
+        }
+        document.documentElement.style.fontSize = deviceWidth / 7.5 + "px";
+      }
+    })(window, document);
+    window.onload = function () {
+      document.addEventListener("touchstart", function (event) {
+        if (event.touches.length > 1) {
+          event.preventDefault();
+        }
+      });
+      document.addEventListener("gesturestart", function (event) {
+        event.preventDefault();
+      });
+
+      const protocol = window.location.protocol.replace(":", "");
+      let qdasJS = "",
+        qdasSP = document.createElement("script"),
+        app = document.getElementById("app");
+      if (protocol === "http") {
+        // http
+        qdasJS = "http://s1.qhres.com/!c2c090e2/monitor_analytic.js";
+      } else {
+        // https
+        qdasJS = "https://s5.ssl.qhres.com/!c2c090e2/monitor_analytic.js";
+      }
+      qdasSP.setAttribute("src", qdasJS);
+      app.after(qdasSP);
+      setTimeout(function () {
+        monitor
+          .setProject("QH_4722_1108")
+          .getTrack()
+          .getClickAndKeydown()
+          .getClickHeatmap(10, 1);
+      }, 500);
+    };
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,24 @@
+.text-ellipsis() {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.flex-center {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.bg(@bgimg, @repeat: no-repeat) {
+  background: url(@bgimg);
+  background-repeat: @repeat;
+  background-size: 100% 100%;
+}
+
+.text(@fontsize, @color, @fontweight, @lineHeight) {
+  font-size: @fontsize;
+  color: @color;
+  font-weight: @fontweight;
+  line-height: @lineHeight;
+}
